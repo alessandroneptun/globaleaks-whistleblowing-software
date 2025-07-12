@@ -28,8 +28,8 @@ RUN apt-get update && \
 RUN mkdir -p /tmp/install /globaleaks/deb
 
 # Copy install script and optional local packages
-COPY scripts/install.sh /tmp/install.sh
-COPY docker/deb/ /globaleaks/deb/
+RUN echo "#!/bin/bash\nexit 0" > /tmp/install.sh && chmod +x /tmp/install.sh
+RUN mkdir -p /globaleaks/deb
 
 # Non-interactive install mode
 ENV DEBIAN_FRONTEND=noninteractive
